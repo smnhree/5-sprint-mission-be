@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { createError } from "../../../middlewares/errorHandler.js";
 import asyncHandler from "../../../middlewares/asyncHandler.js";
 import { assert } from "superstruct";
-import { articleIdParamValidation } from "../../../validation/paramValidation.js";
+// import { articleIdParamValidation } from "../../../validation/paramValidation.js";
 import { commentIdParamValidation } from "../../../validation/paramValidation.js";
 
 const prisma = new PrismaClient();
@@ -10,10 +10,9 @@ const prisma = new PrismaClient();
 // 댓글 삭제 API
 const deleteArticleComment = asyncHandler(async (req, res) => {
   // error: id 형식 오류(400)
-  assert(req.params.articleId, articleIdParamValidation);
+  // assert(req.params.articleId, articleIdParamValidation);
   assert(req.params.commentId, commentIdParamValidation);
   const commentId = req.params.commentId;
-
   // delete
   const result = await prisma.comment.delete({
     where: { id: commentId },

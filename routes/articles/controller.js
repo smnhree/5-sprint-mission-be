@@ -20,7 +20,7 @@ router.get("/", getArticleList);
 // 댓글
 router.post("/:articleId/comments", postArticleComment);
 router.get("/:articleId/comments", getArticleCommentList);
-router.patch("/:articleId/comments/:commentId", patchArticleComment);
-router.delete("/:articleId/comments/:commentId", deleteArticleComment);
+router.patch("/comments/:commentId", patchArticleComment);
+router.delete("/comments/:commentId", deleteArticleComment);
 
 export default router;
