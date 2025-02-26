@@ -24,8 +24,8 @@ const getProductList = asyncHandler(async (req, res) => {
     case "recent":
       orderBy = { createdAt: "desc" };
       break;
-    case "favorite":
-      orderBy = { favorite: "desc" };
+    case "likeCount":
+      orderBy = { likeCount: "desc" };
       break;
   }
 

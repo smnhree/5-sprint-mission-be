@@ -1,6 +1,7 @@
 import * as s from "superstruct";
 
 export const createProductValidation = s.object({
+  username: s.size(s.string(), 1, 10),
   name: s.size(s.string(), 1, 10),
   description: s.size(s.string(), 10, 100),
   price: s.number(),
@@ -9,6 +10,7 @@ export const createProductValidation = s.object({
 });
 
 export const updateProductValidation = s.object({
+  username: s.optional(s.size(s.string(), 1, 10)),
   name: s.optional(s.size(s.string(), 1, 10)),
   description: s.optional(s.size(s.string(), 10, 100)),
   price: s.optional(s.number()),

@@ -16,7 +16,7 @@ const deleteArticleComment = asyncHandler(async (req, res) => {
 
   // delete
   const result = await prisma.comment.delete({
-    where: { commentId },
+    where: { id: commentId },
   });
 
   // error: 댓글 없음(404)

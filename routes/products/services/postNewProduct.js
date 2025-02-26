@@ -11,9 +11,10 @@ const postNewProduct = asyncHandler(async (req, res) => {
   assert(req.body, createProductValidation);
 
   // create
-  const { name, description, price, tags, images = [] } = req.body;
+  const { username, name, description, price, tags, images = [] } = req.body;
   const result = await prisma.product.create({
     data: {
+      username,
       name,
       description,
       price,

@@ -24,8 +24,8 @@ const getArticleList = asyncHandler(async (req, res) => {
     case "recent":
       orderBy = { createdAt: "desc" };
       break;
-    case "favorite":
-      orderBy = { favorite: "desc" };
+    case "likeCount":
+      orderBy = { likeCount: "desc" };
       break;
   }
 
@@ -40,17 +40,21 @@ const getArticleList = asyncHandler(async (req, res) => {
     : {};
 
   // findMany
-  const result = await prisma.article.findMany({
-    where,
-    orderBy,
-    skip: offset,
-    take: limit,
-  });
+  const [result, totalCount] = await prisma.$transaction([
+    prisma.article.findMany({
+      where,
+      orderBy,
+      skip: offset,
+      take: limit,
+    }),
+    prisma.article.count({ where }),
+  ]);
 
   res.send({
     message: "게시글 목록 조회 결과입니다.",
     data: result,
     count: result.length,
+    totalCount,
   });
 });
 

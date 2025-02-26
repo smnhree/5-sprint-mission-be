@@ -1,13 +1,11 @@
 import * as s from "superstruct";
-import isUuid from "is-uuid";
-import { TargetType } from "@prisma/client";
 
 export const createCommentValidation = s.object({
-  targetId: s.define("targetId", (value) => isUuid.v4(value)),
-  targetType: s.enums(Object.values(TargetType)),
+  username: s.size(s.string(), 1, 10),
   content: s.size(s.string(), 1, Infinity),
 });
 
 export const updateCommentValidation = s.object({
+  username: s.optional(s.size(s.string(), 1, 10)),
   content: s.size(s.string(), 1, Infinity),
 });

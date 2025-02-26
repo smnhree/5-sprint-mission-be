@@ -11,9 +11,10 @@ const postNewArticle = asyncHandler(async (req, res) => {
   assert(req.body, createArticleValidation);
 
   // create
-  const { title, content, images = [] } = req.body;
+  const { username, title, content, images = [] } = req.body;
   const result = await prisma.article.create({
     data: {
+      username,
       title,
       content,
       images,

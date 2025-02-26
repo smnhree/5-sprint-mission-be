@@ -25,12 +25,7 @@ const getArticleCommentList = asyncHandler(async (req, res) => {
     take: limit,
     ...(cursor && { skip: 1, cursor: { id: cursor } }),
     orderBy: { createdAt: "asc" },
-    where: { targetId: articleId, targetType: "ARTICLE" },
-    select: {
-      id: true,
-      content: true,
-      createdAt: true,
-    },
+    where: { articleId },
   });
 
   // nextCursor 계산

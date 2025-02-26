@@ -17,7 +17,7 @@ const patchArticleComment = asyncHandler(async (req, res) => {
 
   // error: 댓글 없음(404)
   const currentComment = await prisma.comment.findUnique({
-    where: { commentId },
+    where: { id: commentId },
   });
   if (!currentComment) throw createError("댓글이 존재하지 않습니다.", 404);
 
@@ -26,7 +26,7 @@ const patchArticleComment = asyncHandler(async (req, res) => {
 
   // update
   const result = await prisma.comment.update({
-    where: { id },
+    where: { id: commentId },
     data: req.body,
   });
 

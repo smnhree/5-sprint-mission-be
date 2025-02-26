@@ -11,18 +11,16 @@ const postArticleComment = asyncHandler(async (req, res) => {
   // error: id 형식 오류(400)
   assert(req.params.articleId, articleIdParamValidation);
   const articleId = req.params.articleId;
-  const targetId = articleId;
-  const targetType = "ARTICLE";
 
   // error: 입력 값 유효성 검증(400)
   assert(req.body, createCommentValidation);
-  const { content } = req.body;
+  const { username, content } = req.body;
 
   // create
   const result = await prisma.comment.create({
     data: {
-      targetId,
-      targetType,
+      articleId,
+      username,
       content,
     },
   });
