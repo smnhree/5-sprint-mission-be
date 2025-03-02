@@ -8,10 +8,10 @@ import { updateCommentValidation } from "../../../validation/commentValidation.j
 
 const prisma = new PrismaClient();
 
-// 상품 수정 API - 특정 상품 조회 후 수정
+// 댓글 수정 API - 특정 댓글 조회 후 수정
 const patchArticleComment = asyncHandler(async (req, res) => {
   // error: id 형식 오류(400)
-  assert(req.params.articleId, articleIdParamValidation);
+  // assert(req.params.articleId, articleIdParamValidation);
   assert(req.params.commentId, commentIdParamValidation);
   const commentId = req.params.commentId;
 
